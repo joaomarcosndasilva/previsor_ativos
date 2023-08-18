@@ -5,30 +5,13 @@ def tela_analise():
     import pandas as pd
     st.set_option('deprecation.showPyplotGlobalUse', False)
 
-
-    ############ Criar Lista Ibov ############
-    df = pd.read_excel('acoesBovespa.xlsx')
-    acoesB3 = []
-    for acao in df['Código']:
-        acoesB3.append(acao)
-
-    # Cabeçalho
     st.header('Previsor de preços futuros de ativos')
     st.write('By João Marcos da Silva')
 
     # sidebar (barra ao lado esquerdo da tela)
     st.sidebar.success('OPÇÕES DE ANÁLISE')
-    select_radio = st.sidebar.radio(
-        "Ativos do índice, ou digitar?",
-        ('Ativos do índice', 'Digitar'))
-    if select_radio == 'Digitar':
-        ativo = st.sidebar.text_input('Digite o código do ativo:', 'PETR4', help='Digite o código de ativo da B3, ex: PETR4')
-    else:
-        ativo = st.sidebar.selectbox('Selecione um ativo do IBOV:', (
-                                        acoesB3 ),
-                                            True, help='Aqui estão todas as empresas que compões a métrica do índice IBOVESPA atualizadas periodicamente')
-    #if radio_button == 'Digitar':
-    #
+    ativo = st.sidebar.text_input('Digite o código do ativo:', 'PETR4', help='Digite o código de ativo da B3, ex: PETR4')
+
     anos = st.sidebar.slider('Selecione a quantidade de anos:', 2, 15, 9, help='O valor recomendado é 9 anos, mas vc pode selecionar quanto quiser, porém não foi testados valores superiores ao padrão')
 
 
